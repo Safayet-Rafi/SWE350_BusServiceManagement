@@ -8,8 +8,7 @@ const AddServices = () => {
     source: "",
     destination: "",
     departure_time: "",
-    price:"",
-    total_seat:""
+    fare:"",
   });
     const navigate = useNavigate()
 
@@ -73,52 +72,36 @@ const AddServices = () => {
                     setServices({ ...services, destination: e.target.value })
                   }
                 />
-              </div>
-              <div className="col-12">
                 <label htmlFor="inputDepartureTime" className="form-label">
                   Departure Time
                 </label>
                 <input
                   type="text"
                   className="form-control rounded-0"
-                  id="departure_time"
+                  id="departureTime"
                   placeholder="Enter Departure Time"
+                  autoComplete="off"
                   onChange={(e) =>
                     setServices({ ...services, departure_time: e.target.value })
                   }
                 />
-              </div>
-              <div className="col-12">
-                <label htmlFor="inputPrice" className="form-label">
-                  Price
+                <label htmlFor="inputFare" className="form-label">
+                  Fare
                 </label>
                 <input
                   type="text"
                   className="form-control rounded-0"
-                  id="price"
-                  placeholder="Enter Price"
+                  id="fare"
+                  placeholder="Enter Fare"
+                  autoComplete="off"
                   onChange={(e) =>
-                    setServices({ ...services, price: e.target.value })
-                  }
-                />
-              </div>
-              <div className="col-12">
-                <label htmlFor="inputTotalSeat" className="form-label">
-                  Total Seat
-                </label>
-                <input
-                  type="text"
-                  className="form-control rounded-0"
-                  id="total_seat"
-                  placeholder="Enter Total No. of Seat"
-                  onChange={(e) =>
-                    setServices({ ...services, total_seat: e.target.value })
+                    setServices({ ...services, fare: e.target.value })
                   }
                 />
               </div>
               <div className="col-12">
                 <button type="submit" className="btn btn-primary w-100">
-                  Add Bus
+                  Add Services
                 </button>
               </div>
             </form>

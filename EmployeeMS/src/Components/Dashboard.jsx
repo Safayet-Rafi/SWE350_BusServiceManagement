@@ -4,14 +4,14 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import axios from "axios";
 
 const Dashboard = () => {
-  const anvigate = useNavigate()
+  const navigate = useNavigate()
   axios.defaults.withCredentials = true
   const handleLogout = () => {
     axios.get('http://localhost:3000/auth/logout')
     .then(result => {
       if(result.data.Status) { 
         localStorage.removeItem("valid")
-        anvigate('/')
+        navigate('/')
       }
     })
   }
@@ -20,7 +20,6 @@ const Dashboard = () => {
       <div className="row flex-nowrap">
         <div className="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
           <div className="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-            
             <ul
               className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
               id="menu"
@@ -56,20 +55,11 @@ const Dashboard = () => {
               </li>
               <li className="w-100">
                 <Link
-                  to="/dashboard/passenger"
-                  className="nav-link px-0 align-middle text-white"
-                >
-                  <i className="fs-4 bi-person ms-2"></i>
-                  <span className="ms-2 d-none d-sm-inline">Passenger</span>
-                </Link>
-              </li>
-              <li className="w-100">
-                <Link
                   to="/dashboard/bus"
                   className="nav-link px-0 align-middle text-white"
                 >
                   <i className="fs-4 bi-bus-front ms-2"></i>
-                  <span className="ms-2 d-none d-sm-inline">Manage Bus</span>
+                  <span className="ms-2 d-none d-sm-inline">Bus</span>
                 </Link>
               </li>
               <li className="w-100">
@@ -79,6 +69,15 @@ const Dashboard = () => {
                 >
                   <i className="fs-4 bi bi-tools ms-2"></i>
                   <span className="ms-2 d-none d-sm-inline">Services</span>
+                </Link>
+              </li>
+              <li className="w-100">
+                <Link
+                  to="/dashboard/counter"
+                  className="nav-link px-0 align-middle text-white"
+                >
+                  <i className="fs-4 bi bi-house ms-2"></i>
+                  <span className="ms-2 d-none d-sm-inline">Counter</span>
                 </Link>
               </li>
               <li className="w-100" onClick={handleLogout}>

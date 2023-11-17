@@ -1,10 +1,9 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const Employee = () => {
   const [employee, setEmployee] = useState([]);
-  const navigate = useNavigate()
 
   useEffect(() => {
     axios

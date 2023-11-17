@@ -26,7 +26,6 @@ router.post("/adminlogin", (req, res) => {
   });
 });
 
-//category
 router.get('/category', (req, res) => {
     const sql = "SELECT * FROM category";
     con.query(sql, (err, result) => {
@@ -40,15 +39,6 @@ router.post('/add_category', (req, res) => {
     con.query(sql, [req.body.category], (err, result) => {
         if(err) return res.json({Status: false, Error: "Query Error"})
         return res.json({Status: true})
-    })
-})
-
-router.delete('/delete_category/:id', (req, res) => {
-    const id = req.params.id;
-    const sql = "delete from category where id = ?"
-    con.query(sql,[id], (err, result) => {
-        if(err) return res.json({Status: false, Error: "Query Error"+err})
-        return res.json({Status: true, Result: result})
     })
 })
 
@@ -179,7 +169,7 @@ router.get('/services', (req, res) => {
 
 router.post('/add_services', (req, res) => {
     const sql = `INSERT INTO services
-    (coach,source,destination,departure_time,price,total_seat)  
+    (coach,source,destination,departure_time,fare)  
     VALUES (?)`;
 
     const values = [
@@ -187,8 +177,7 @@ router.post('/add_services', (req, res) => {
         req.body.source,
         req.body.destination,
         req.body.departure_time,
-        req.body.price,
-        req.body.total_seat
+        req.body.fare,
     ]
 
     con.query(sql, [values], (err, result) => {
@@ -205,6 +194,61 @@ router.delete('/delete_services/:coach', (req, res) => {
         return res.json({Status: true, Result: result})
     })
 })
+
+//counter
+router.get('/counter', (req, res) => {
+    const sql = "SELECT * FROM counter";
+    con.query(sql, (err, result) => {
+        if(err) return res.json({Status: false, Error: "Query Error"})
+        return res.json({Status: true, Result: result})
+    })
+})
+
+router.post('/add_counter', (req, res) => {
+    const sql = `INSERT INTO counter
+    (location,phone,manager)  
+    VALUES (?)`;
+
+    const values = [
+        req.body.location,
+        req.body.phone,
+        req.body.manager,
+    ]
+
+    con.query(sql, [values], (err, result) => {
+        if(err) return res.json({Status: false, Error: "Query Error"})
+        return res.json({Status: true})
+    })
+})
+
+router.delete('/delete_counter/:location', (req, res) => {
+    const location = req.params.location;
+    const sql = "delete from counter where location = ?"
+    con.query(sql,[location], (err, result) => {
+        if(err) return res.json({Status: false, Error: "Query Error"+err})
+        return res.json({Status: true, Result: result})
+    })
+})
+
+//Passenger
+router.get('/passenger', (req, res) => {
+    const sql = "SELECT * FROM passenger";
+    con.query(sql, (err, result) => {
+        if(err) return res.json({Status: false, Error: "Query Error"})
+        return res.json({Status: true, Result: result})
+    })
+})
+
+router.delete('/delete_passenger/:nid', (req, res) => {
+    const location = req.params.location;
+    const sql = "delete from passenger where nid = ?"
+    con.query(sql,[nid], (err, result) => {
+        if(err) return res.json({Status: false, Error: "Query Error"+err})
+        return res.json({Status: true, Result: result})
+    })
+})
+
+
 
 router.get('/admin_count', (req, res) => {
     const sql = "select count(id) as admin from admin";

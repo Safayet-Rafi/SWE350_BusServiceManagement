@@ -2,24 +2,24 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-const Services = () => {
+const Counter = () => {
 
-    const [services, setServices] = useState([])
+    const [counter, setCounter] = useState([])
     const navigate = useNavigate();
 
     useEffect(()=> {
-        axios.get('http://localhost:3000/auth/services')
+        axios.get('http://localhost:3000/auth/counter')
         .then(result => {
             if(result.data.Status) {
-                setServices(result.data.Result);
+                setCounter(result.data.Result);
             } else {
                 alert(result.data.Error)
             }
         }).catch(err => console.log(err))
     }, [])
 
-    const handleDelete = (coach) => {
-        axios.delete('http://localhost:3000/auth/delete_services/'+coach)
+    const handleDelete = (location) => {
+        axios.delete('http://localhost:3000/auth/delete_counter/'+location)
         .then(result => {
             if(result.data.Status) {
                 window.location.reload()
@@ -32,34 +32,30 @@ const Services = () => {
   return (
     <div className='px-5 mt-3'>
         <div className='d-flex justify-content-center'>
-            <h3>Services List</h3>
+            <h3>Counter List</h3>
         </div>
-        <Link to="/dashboard/add_services" className='btn btn-success'>Add Services</Link>
+        <Link to="/dashboard/add_counter" className='btn btn-success'>Add Counter</Link>
         <div className='mt-3'>
             <table className="table">
                 <thead>
                     <tr>
-                        <th>Coach</th>
-                        <th>Source</th>
-                        <th>Destination</th>
-                        <th>Departure Time</th>
-                        <th>Fare</th>
+                        <th>Location</th>
+                        <th>Phone</th>
+                        <th>Manager</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        services.map(b => (
+                        counter.map(b => (
                             <tr>
-                                <td>{b.coach}</td>
-                                <td>{b.source}</td>
-                                <td>{b.destination}</td>
-                                <td>{b.departure_time}</td>
-                                <td>{b.fare}</td>
+                                <td>{b.location}</td>
+                                <td>{b.phone}</td>
+                                <td>{b.manager}</td>
                                 <td>
                                 <button
                                    className="btn btn-warning btn-sm"
-                                   onClick={() => handleDelete(b.coach)}
+                                   onClick={() => handleDelete(b.location)}
                                 >
                                 Delete
                                 </button>
@@ -75,4 +71,4 @@ const Services = () => {
   )
 }
 
-export default Services
+export default Counter
