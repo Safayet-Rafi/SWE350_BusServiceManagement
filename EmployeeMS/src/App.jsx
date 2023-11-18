@@ -9,6 +9,8 @@ import Category from './Components/Category'
 import Bus from './Components/Bus'
 import Services from './Components/Services'
 import Counter from './Components/Counter'
+import Passenger from './Components/Passenger'
+import Ticket from './Components/Ticket'
 import AddBus from './Components/AddBus'
 import AddCategory from './Components/AddCategory'
 import AddEmployee from './Components/AddEmployee'
@@ -39,6 +41,8 @@ function App() {
         <Route path='/dashboard/bus' element={<Bus />}></Route>
         <Route path='/dashboard/services' element={<Services />}></Route>
         <Route path='/dashboard/counter' element={<Counter />}></Route>
+        <Route path='/dashboard/passenger' element={<Passenger/>}></Route>
+        <Route path='/dashboard/ticket' element={<Ticket/>}></Route>
         <Route path='/dashboard/add_category' element={<AddCategory />}></Route>
         <Route path='/dashboard/add_employee' element={<AddEmployee />}></Route>
         <Route path='/dashboard/add_bus' element={<AddBus />}></Route>

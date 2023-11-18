@@ -80,6 +80,24 @@ const Dashboard = () => {
                   <span className="ms-2 d-none d-sm-inline">Counter</span>
                 </Link>
               </li>
+              <li className="w-100">
+                <Link
+                  to="/dashboard/passenger"
+                  className="nav-link px-0 align-middle text-white"
+                >
+                  <i className="fs-4 bi bi-person ms-2"></i>
+                  <span className="ms-2 d-none d-sm-inline">Passenger</span>
+                </Link>
+              </li>
+              <li className="w-100">
+                <Link
+                  to="/dashboard/ticket"
+                  className="nav-link px-0 align-middle text-white"
+                >
+                  <i className="fs-4 bi bi-ticket ms-2"></i>
+                  <span className="ms-2 d-none d-sm-inline">Ticket</span>
+                </Link>
+              </li>
               <li className="w-100" onClick={handleLogout}>
               <Link
                   className="nav-link px-0 align-middle text-white"

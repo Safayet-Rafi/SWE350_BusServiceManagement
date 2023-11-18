@@ -240,9 +240,27 @@ router.get('/passenger', (req, res) => {
 })
 
 router.delete('/delete_passenger/:nid', (req, res) => {
-    const location = req.params.location;
+    const nid = req.params.nid;
     const sql = "delete from passenger where nid = ?"
     con.query(sql,[nid], (err, result) => {
+        if(err) return res.json({Status: false, Error: "Query Error"+err})
+        return res.json({Status: true, Result: result})
+    })
+})
+
+//Ticket
+router.get('/ticket', (req, res) => {
+    const sql = "SELECT * FROM ticket";
+    con.query(sql, (err, result) => {
+        if(err) return res.json({Status: false, Error: "Query Error"})
+        return res.json({Status: true, Result: result})
+    })
+})
+
+router.delete('/delete_ticket/:ticket_no', (req, res) => {
+    const ticket_no = req.params.ticket_no;
+    const sql = "delete from ticket where ticket_no = ?"
+    con.query(sql,[ticket_no], (err, result) => {
         if(err) return res.json({Status: false, Error: "Query Error"+err})
         return res.json({Status: true, Result: result})
     })
