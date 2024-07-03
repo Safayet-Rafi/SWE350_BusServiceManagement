@@ -12,6 +12,7 @@ import Services from './Components/Services'
 import AddCategory from './Components/AddCategory'
 import AddEmployee from './Components/AddEmployee'
 import AddBus from './Components/AddBus'
+import AddPassenger from './Components/AddPassenger'
 import AddServices from './Components/AddServices'
 import EditEmployee from './Components/EditEmployee'
 import Start from './Components/Start'
@@ -41,6 +42,7 @@ function App() {
         <Route path='/dashboard/add_category' element={<AddCategory />}></Route>
         <Route path='/dashboard/add_employee' element={<AddEmployee />}></Route>
         <Route path='/dashboard/add_bus' element={<AddBus />}></Route>
+        <Route path='/dashboard/add_passenger' element={<AddPassenger />}></Route>
         <Route path='/dashboard/add_services' element={<AddServices/>}></Route>
         <Route path='/dashboard/edit_employee/:id' element={<EditEmployee />}></Route>
         

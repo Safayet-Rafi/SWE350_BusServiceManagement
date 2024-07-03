@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Employee = () => {
   const [employee, setEmployee] = useState([]);
-  const navigate = useNavigate()
 
   useEffect(() => {
     axios
@@ -22,7 +21,7 @@ const Employee = () => {
     axios.delete('http://localhost:3000/auth/delete_employee/'+id)
     .then(result => {
         if(result.data.Status) {
-            window.location.reload()
+          setEmployee(employee.filter((employee) => employee.id !== id));
         } else {
             alert(result.data.Error)
         }

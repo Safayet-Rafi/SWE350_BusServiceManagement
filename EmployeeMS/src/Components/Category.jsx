@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const Category = () => {
 
-    const [category, setCategory] = useState([])
+    const [category, setCategory] = useState([]);
 
     useEffect(()=> {
         axios.get('http://localhost:3000/auth/category')
@@ -12,21 +12,22 @@ const Category = () => {
             if(result.data.Status) {
                 setCategory(result.data.Result);
             } else {
-                alert(result.data.Error)
+                alert(result.data.Error);
             }
         }).catch(err => console.log(err))
     }, [])
 
     const handleDelete = (id) => {
-        axios.delete('http://localhost:3000/auth/delete_category/'+id)
+        axios.delete('http://localhost:3000/auth/delete_category/' + id)
         .then(result => {
             if(result.data.Status) {
-                window.location.reload()
+                setCategory(prevCategory => prevCategory.filter(c => c.id !== id));
             } else {
                 alert(result.data.Error)
             }
         })
-      } 
+        .catch(err => console.log(err))
+    }
 
   return (
     <div className='px-5 mt-3'>

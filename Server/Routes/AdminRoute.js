@@ -64,7 +64,7 @@ const storage = multer.diskStorage({
 const upload = multer({
     storage: storage
 })
-// end imag eupload 
+// end image upload 
 
 router.post('/add_employee',upload.single('image'), (req, res) => {
     const sql = `INSERT INTO employee 
@@ -167,6 +167,43 @@ router.delete('/delete_bus/:id', (req, res) => {
         return res.json({Status: true, Result: result})
     })
 })
+
+// Passenger routes
+
+router.get('/passenger', (req, res) => {
+    const sql = "SELECT * FROM passenger";
+    con.query(sql, (err, result) => {
+        if(err) return res.json({Status: false, Error: "Query Error"});
+        return res.json({Status: true, Result: result});
+    })
+})
+
+router.post('/add_passenger', (req, res) => {
+    const sql = `INSERT INTO passenger 
+    (name, email, address)  
+    VALUES (?)`;
+
+    const values = [
+        req.body.name,
+        req.body.email,
+        req.body.address,
+    ];
+
+    con.query(sql, [values], (err, result) => {
+        if(err) return res.json({Status: false, Error: "Query Error"});
+        return res.json({Status: true});
+    })
+})
+
+router.delete('/delete_passenger/:id', (req, res) => {
+    const id = req.params.id;
+    const sql = "DELETE FROM passenger WHERE id = ?";
+    con.query(sql, [id], (err, result) => {
+        if(err) return res.json({Status: false, Error: "Query Error" + err});
+        return res.json({Status: true, Result: result});
+    })
+})
+
 
 //services
 router.get('/services', (req, res) => {
